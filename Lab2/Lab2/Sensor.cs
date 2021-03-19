@@ -91,15 +91,17 @@ namespace Lab2 {
             int offset = Width/50;
 
             int elementWidth = Width / elementCount - 2 * offset;
-            int elementHeight = Height - 2 * offset;
+            int elementHeight = Height/2 - 2 * offset;
 
             int localX = X + (Width - (elementCount*(elementWidth + offset) - offset)) / 2;
-            int localY = Y + offset;
+            int localY = Y + Height/2 + offset;
+
+            graphics.DrawImage(Image.FromFile("datchik.png"), localX + elementWidth/4, localY - Height / 2, elementWidth/2, elementHeight);
 
             List<string> typeTitles = new List<string> {
                 "Свет",
                 "Цвет"
-            };
+            };            
             TypeButton = new ExpandedButton(localX, localY, elementWidth, elementHeight, typeTitles, TypeIndex, TypeButton != null ? TypeButton.IsExpanded : false, (v) => { TypeIndex = v; ChangeType(v); });
             TypeButton.Draw(graphics);
             localX += elementWidth + offset;
@@ -123,6 +125,21 @@ namespace Lab2 {
             SignButton = new ExpandedButton(localX, localY, elementWidth, elementHeight, signTitles, SignIndex, SignButton != null ? SignButton.IsExpanded : false, (v) => { SignIndex = v; ChangeSign(v); });
             SignButton.Draw(graphics);
             localX += elementWidth + offset;
+
+            if (Type == SensorType.Color) {
+                Brush colorBrush = null;
+                switch (Value) {
+                    case 0: colorBrush = Brushes.White; break;
+                    case 1: colorBrush = Brushes.Black; break;
+                    case 2: colorBrush = Brushes.Red;   break;
+                    case 3: colorBrush = Brushes.Green; break;
+                    default: colorBrush = Brushes.Blue; break;
+                }
+                graphics.FillRectangle(colorBrush, new Rectangle(localX + elementWidth/3 + offset - 2, localY - Height/3, elementWidth/4, elementHeight/2));
+            } else {
+                graphics.FillRectangle(Brushes.Black, new Rectangle(localX + elementWidth / 4, localY - Height/15 - (int)(elementHeight*Value/100f), elementWidth / 2, (int)(elementHeight * (Value / 100f))));
+                graphics.DrawRectangle(Pens.Black, new Rectangle(localX + elementWidth / 4, localY - Height / 15 - elementHeight, elementWidth / 2, elementHeight));
+            }
 
             ValueButton = new NumberButton(localX, localY, elementWidth, elementHeight, Value, (v) => SetValue(v));
             ValueButton.Draw(graphics);

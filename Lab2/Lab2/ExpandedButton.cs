@@ -25,7 +25,7 @@ namespace Lab2 {
 
         public bool IsExpandedInside(int x, int y) =>
                 IsExpanded && (x >= X - Width / 2 && x <= X - Width / 2 + Width * 2) && 
-                (y >= Y + Height && y <= Y + Height + Height * Data.Count / 2);
+                (y >= Y + Height && y <= Y + Height + Height * Data.Count);
         
 
         public override void Click(int x, int y) {
@@ -33,11 +33,11 @@ namespace Lab2 {
                 int start = Y + Height;
                 int index = 0;
                 for (int i = 0; i < Data.Count; i++) {
-                    if (y >= start && y <= start + Height/2) {
+                    if (y >= start && y <= start + Height) {
                         break;
                     }
                     index++;
-                    start += Height / 2;
+                    start += Height;
                 }
                 Callback(index);
             }
@@ -53,12 +53,12 @@ namespace Lab2 {
             Font font = new Font(FontFamily.GenericSansSerif, Width / 6f);
             graphics.DrawString(Title, font, Brushes.Black, new RectangleF(X,Y, Width, Height), format);
             if (IsExpanded) {
-                graphics.FillRectangle(Brushes.Gray, new Rectangle((X - Width / 2), Y + Height + 3, Width * 2 + 3, Height * Data.Count/2));
-                graphics.FillRectangle(Brushes.LightGray, new Rectangle(X - Width / 2, Y + Height, Width * 2, Height * Data.Count / 2));
+                graphics.FillRectangle(Brushes.Gray, new Rectangle((X - Width / 2), Y + Height + 3, Width * 2 + 3, Height * Data.Count));
+                graphics.FillRectangle(Brushes.LightGray, new Rectangle(X - Width / 2, Y + Height, Width * 2, Height * Data.Count));
                 int y = Y + Height;
                 for (int i = 0; i < Data.Count; i++) {
-                    graphics.DrawString(Data[i], font, Brushes.Black, new RectangleF(X - Width / 2, y, Width * 2, Height/2), format);
-                    y += Height / 2;
+                    graphics.DrawString(Data[i], font, Brushes.Black, new RectangleF(X - Width / 2, y, Width * 2, Height), format);
+                    y += Height ;
                 }
             }
         }
