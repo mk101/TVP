@@ -1,0 +1,28 @@
+﻿<Window x:Class="Lab3_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab3_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="800"
+        ResizeMode="NoResize" KeyDown="Window_KeyDown">
+    <Grid>
+        <TextBlock x:Name="CountLabel" Panel.ZIndex="20"
+            Text="0/0" 
+            Margin="10,10,700,629"
+            FontSize="20"/>
+        <TextBlock x:Name="ScoreLabel" Panel.ZIndex="20"
+            Text="0" 
+            Margin="10,40,700,592"
+            FontSize="20"/>
+        <TextBlock x:Name="PauseLabel"
+            Text="Pause"
+            Margin="534,10,10,592"
+            FontSize="20"
+            TextAlignment="Right"
+            Visibility="Hidden"/>
+        <Grid x:Name="Content">
+        </Grid>
+    </Grid>
+</Window>
