@@ -1,0 +1,40 @@
+﻿<Window x:Class="Lab4.Views.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab4"
+        mc:Ignorable="d"
+        Title="Menu" Height="472" Width="500"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" 
+                   Text="Морской бой" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center"
+                   FontSize="30"
+                   FontWeight="Medium"/>
+        <Button x:Name="play2PButton"
+                Content="2 Игрока"
+                Grid.Row="1"
+                Margin="60, 20"
+                FontSize="20" Click="Play2PButton_Click"/>
+        <Button x:Name="playBotButton"
+                Content="Играть с ботом"
+                Grid.Row="2"
+                Margin="60, 20"
+                FontSize="20" Click="PlayBotButton_Click"/>
+        <Button x:Name="exitButton"
+                Content="Выход"
+                Grid.Row="3"
+                Margin="60, 20"
+                FontSize="20" Click="ExitButton_Click"/>
+    </Grid>
+</Window>
