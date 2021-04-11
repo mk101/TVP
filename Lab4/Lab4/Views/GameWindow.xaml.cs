@@ -96,11 +96,13 @@ namespace Lab4.Views {
                         selectedX = j;
                         selectedY = i;
                         UpdateGrid();
+                        turnButton.IsEnabled = true;
+                        return;
                     }
                 }
             }
 
-            turnButton.IsEnabled = true;
+            
         }
 
         private void UpdateGrid() {
@@ -156,12 +158,17 @@ namespace Lab4.Views {
                     logger.Append($"{p2Name}: Мимо\n");
                     logArea.Text = logger.ToString();
                     logScroll.ScrollToEnd();
-                    UpdateGrid();
                     if (!isP2Bot) {
                         turn = 2;
+                        rectangles[selectedY, selectedX].Stroke = Brushes.Transparent;
                         selectedX = -1;
                         selectedY = -1;
+                        logger.Append("Ход Игрок 2\n");
+                        logArea.Text = logger.ToString();
+                        logScroll.ScrollToEnd();
+                        UpdateGrid();
                     } else {
+                        logger.Append("Ход Игрок 2\n");
                         logArea.Text = logger.ToString();
                         logScroll.ScrollToEnd();
                         UpdateGrid();
@@ -229,8 +236,13 @@ namespace Lab4.Views {
                 if (res == -1) {
                     logger.Append($"Игрок 1: Мимо\n");
                     turn = 1;
+                    rectangles[selectedY, selectedX].Stroke = Brushes.Transparent;
                     selectedX = -1;
                     selectedY = -1;
+                    logger.Append("Ход Игрок 1\n");
+                    logArea.Text = logger.ToString();
+                    logScroll.ScrollToEnd();
+                    UpdateGrid();
                 } else if (res == 1) {
                     logger.Append($"Игрок 1: Попал\n");
                     p2Score++;
